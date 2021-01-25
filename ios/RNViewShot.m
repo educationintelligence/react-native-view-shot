@@ -75,11 +75,11 @@ RCT_EXPORT_METHOD(captureRef:(nonnull NSNumber *)target
     UIView* rendered;
     UIScrollView* scrollView;
     if (snapshotContentContainer) {
-      if (![view isKindOfClass:[RCTScrollView class]]) {
+      if (![view.subviews[0] isKindOfClass:[RCTScrollView class]]) {
         reject(RCTErrorUnspecified, [NSString stringWithFormat:@"snapshotContentContainer can only be used on a RCTScrollView. instead got: %@", view], nil);
         return;
       }
-      RCTScrollView* rctScrollView = view;
+      RCTScrollView* rctScrollView = view.subviews[0];
       scrollView = rctScrollView.scrollView;
       rendered = scrollView;
     }
